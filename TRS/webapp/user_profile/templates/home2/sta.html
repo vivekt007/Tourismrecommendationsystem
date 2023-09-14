@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ state_name }} Details</title>
+</head>
+<body>
+    {% if state_data %}
+    <h1>{{ state_name }}</h1>
+    {% for place_data in state_data %}
+    <h2>Day {{ forloop.counter }}. {{ place_data.place }}</h2>
+    <p>Location Type: {{ place_data.type }}</p>
+    <p>Tempeature: {{ place_data.temp }}</p>
+    <img src="{{ place_data.url }}" alt="{{ place_data.place }}" style="width: 250px;">
+    <p>{{ place_data.details }}</p>
+    <hr>
+    {% endfor %}
+    <div class="map-container">
+        {{ map_html|safe }}
+    </div>
+    
+    
+{% elif error_msg %}
+<h1>Error</h1>
+<p>{{ error_msg }}</p>
+
+{% else %}
+<hr>
+
+<h1>Enter a State Name</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="state_name" style="font-weight: bold;">Location:</label>
+    <select id="state_name" name="state_name">
+        <option value="">Select a state</option>
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+        <!-- Rest of the options -->
+    </select><br>
+    <label for="start_date" style="font-weight: bold;">Start Date:</label>
+    <input type="date" id="start_date" name="start_date"><br>
+
+    <label for="end_date" style="font-weight: bold;">End Date:</label>
+    <input type="date" id="end_date" name="end_date"><br>
+
+    <label for="num_people" style="font-weight: bold;">Number of People:</label>
+    <input type="number" id="num_people" name="num_people"><br>
+
+    <label for="companions" style="font-weight: bold;">Companions:</label>
+    <select id="companions" name="companions">
+        <option value="solo">Solo</option>
+        <option value="family">Family</option>
+        <option value="friends">Friends</option>
+        <option value="couple">Couple</option>
+    </select><br>
+
+    <button type="submit">Submit</button>
+</form>
+<div class="map-container">
+    {{ map_html }}
+</div>
+{% endif %}
+</body>
+</html>

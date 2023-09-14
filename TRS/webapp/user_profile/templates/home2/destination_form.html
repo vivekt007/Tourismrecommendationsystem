@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" style="border: solid 1px black;padding: 12%;width: 35%;margin-left: 20%;">
+    <form method="POST">
+      {% csrf_token %}
+      <label for="mood" style="font-weight: bold;">What type of location are you in the mood for?</label>
+      <select name="mood" id="mood" style="margin-bottom: 10px;">
+          <option value="" selected disabled>Select a location type</option>
+          {% for location_type in location_types %}
+          <option value="{{ location_type }}">{{ location_type }}</option>
+          {% endfor %}
+      </select>
+      <br>
+      <label for="group_size" style="font-weight: bold;">What is the size of your group?</label>
+      <input type="number" name="group_size" id="group_size" min="1" required style="margin-bottom: 10px;">
+      <br>
+      <label for="dateTravel" style="font-weight: bold;">When will you be travelling?</label>
+      <input type="date" name="dateTravel" id="dateTravel" min="1" required style="margin-bottom: 10px;">
+      <br>
+      <!-- <label for="temp" style="font-weight: bold;">What temperature range are you comfortable with?</label>
+      <select name="temp" id="temp" style="margin-bottom: 10px;">
+          <option value="" selected disabled>Select a temperature range</option>
+          <optgroup label="Temperature">
+              <option value="cat1">22 - 24</option>
+              <option value="cat2">25 - 28</option>
+              <option value="cat3">28 - 30</option>
+              <option value="cat4">30 - 32</option>
+              <option value="cat5">32 - 35</option>
+          </optgroup>
+      </select> -->
+      <br>
+      <input type="submit" value="Submit" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;">
+    </form>
+  </div>
+</body>
+</html>

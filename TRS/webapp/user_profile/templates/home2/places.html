@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+  <h1>Places to Visit</h1>
+  {% if places %}
+    <form method="post" action="{% url 'place_selection' %}">
+      {% csrf_token %}
+      {% for place in places %}
+        {% if place.checked %}
+          <input type="checkbox" name="{{ place.id }}" value="{{ place.id }}" checked>
+          <label>{{ place.place }}</label><br>
+          <img src="{{ place.url }}" alt="{{ place.place }}" width="300"><br>
+          <p>{{ place.details }}</p>
+          <p>Temperature: {{ place.temp }}°C</p>
+          <p>Type: {{ place.type }}</p>
+        {% endif %}
+      {% endfor %}
+      <input type="submit" value="Submit">
+    </form>
+  {% else %}
+    <p>No places found.</p>
+  {% endif %}
+
+</body>
+</html>

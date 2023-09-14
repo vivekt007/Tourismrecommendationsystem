@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Destination Details</title>
+	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			font-size: 36px;
+			color: #333;
+			margin-top: 30px;
+			margin-bottom: 10px;
+		}
+
+		p {
+			font-size: 18px;
+			color: #666;
+			margin-bottom: 20px;
+		}
+
+		.details {
+			background-color: #fff;
+			padding: 30px;
+			margin: 0 auto;
+			max-width: 800px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+			border-radius: 10px;
+		}
+
+		img {
+			display: block;
+			margin: 0 auto;
+			max-width: 100%;
+			margin-top: 30px;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div class="details">
+		<h1>Location: {{ location }}</h1>
+		<p><strong>Type:</strong> {{ type }}</p>
+		<p><strong>Details:</strong> {{ details }}</p>
+		{% if another_location %}
+		<p><strong>Another Location:</strong> {{ another_location }}</p>
+		{% endif %}
+		<img src="{{ url }}" alt="{{ location }}">
+	</div> -->
+    <div class="details">
+        <h1>Location: {{ location }}</h1>
+        <p><strong>Type:</strong> {{ type }}</p>
+        <p><strong>Details:</strong> {{ details }}</p>
+        <img src="{{ url }}" alt="{{ location }}">
+    
+        {% if other_locations %}
+        <h2>Other {{ type }} locations:</h2>
+        <ul>
+            {% for other_location in other_locations %}
+            <li>{{ other_location }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="{% url 'suggest_plan' %}">
+        {% csrf_token %}
+        <label for="location" style="font-weight: bold;">Location:</label>
+        <select id="location" name="location">
+            <option value="">Select a state</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+        </select><br>
+
+
+        <label for="start_date" style="font-weight: bold;">Start Date:</label>
+        <input type="date" id="start_date" name="start_date"><br>
+
+        <label for="end_date" style="font-weight: bold;">End Date:</label>
+        <input type="date" id="end_date" name="end_date"><br>
+
+        <label for="num_people" style="font-weight: bold;">Number of People:</label>
+        <input type="number" id="num_people" name="num_people"><br>
+
+        <label for="companions" style="font-weight: bold;">Companions:</label>
+        <select id="companions" name="companions">
+            <option value="solo">Solo</option>
+            <option value="family">Family</option>
+            <option value="friends">Friends</option>
+            <option value="couple">Couple</option>
+        </select><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    {% if places %}
+  <h2>Possible Itinerary</h2>
+  <ol>
+    {% for place in places %}
+      <li>
+        <h4>{{ place.place }} ({{ place.type }})</h4>
+        <img src="{{ place.url }}" alt="{{ place.place }}" width="300">
+        <p>{{ place.details }}</p>
+      </li>
+    {% endfor %}
+  </ol>
+{% else %}
+  <p>No places found for the selected location.</p>
+{% endif %}
+</body>
+</html>
+

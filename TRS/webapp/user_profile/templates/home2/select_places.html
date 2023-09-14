@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Select Places</title>
+</head>
+<body>
+	<h1>Select Places</h1>
+	<form method="post">
+		{% csrf_token %}
+		<select id="state" name="state">
+			{% for state in states %}
+			<option value="{{ state }}">{{ state }}</option>
+			{% endfor %}
+		</select>
+        <label for="start_date" style="font-weight: bold;">Start Date:</label>
+        <input type="date" id="start_date" name="start_date"><br>
+    
+        <label for="end_date" style="font-weight: bold;">End Date:</label>
+        <input type="date" id="end_date" name="end_date"><br>
+    
+        <label for="num_people" style="font-weight: bold;">Number of People:</label>
+        <input type="number" id="num_people" name="num_people"><br>
+    
+        <label for="companions" style="font-weight: bold;">Companions:</label>
+        <select id="companions" name="companions">
+            <option value="solo">Solo</option>
+            <option value="family">Family</option>
+            <option value="friends">Friends</option>
+            <option value="couple">Couple</option>
+        </select><br>
+        <br><br>
+		{% for place in places %}
+		<label><input type="checkbox" name="places[]" value="{{ place.id }}" checked>{{ place.place }}</label><br>
+		{% endfor %}
+		<br><br>
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>

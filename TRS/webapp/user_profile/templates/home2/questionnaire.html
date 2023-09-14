@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Questionnaire</title>
+</head>
+<body style="background-color: #f0f0f0; font-family: Arial, sans-serif;">
+    <h1 style="color: #333;">Travel Questionnaire</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>What type of vacation are you interested in?</p>
+        <input type="radio" id="water" name="question1" value="water">
+        <label for="water">Water-based activities (beach, snorkeling, etc.)</label><br>
+        <input type="radio" id="snow" name="question1" value="snow">
+        <label for="snow">Winter sports (skiing, snowboarding, etc.)</label><br>
+        <input type="radio" id="trekking" name="question1" value="trekking">
+        <label for="trekking">Trekking/hiking</label><br>
+        <input type="radio" id="historical" name="question1" value="historical place">
+        <label for="historical">Visiting historical places</label><br>
+        <input type="radio" id="adventure" name="question1" value="adventure sports">
+        <label for="adventure">Adventure sports (bungee jumping, rock climbing, etc.)</label><br>
+        <br>
+        {% if question1 %}
+        <p style="color: #555;">{{ question2 }}</p>
+        {% for choice in choices %}
+        <input type="radio" id="{{ choice }}" name="question2" value="{{ choice }}">
+        <label for="{{ choice }}" style="margin-right: 10px;">{{ choice }}</label>
+        {% endfor %}
+        {% endif %}
+        <br><br>
+        <input type="submit" value="Submit" style="background-color: #333; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">
+    </form>
+    {% if destinations %}
+    <h2 style="color: #333;">Potential Destinations:</h2>
+    <ul>
+        {% for destination in destinations %}
+        <li style="color: #555;">{{ destination }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

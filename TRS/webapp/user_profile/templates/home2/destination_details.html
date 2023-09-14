@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Destination Details</title>
+	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			font-size: 36px;
+			color: #333;
+			margin-top: 30px;
+			margin-bottom: 10px;
+		}
+
+		p {
+			font-size: 18px;
+			color: #666;
+			margin-bottom: 20px;
+		}
+
+		.details {
+			background-color: #fff;
+			padding: 30px;
+			margin: 0 auto;
+			max-width: 800px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+			border-radius: 10px;
+		}
+
+		img {
+			display: block;
+			margin: 0 auto;
+			max-width: 100%;
+			margin-top: 30px;
+		}
+	</style>
+</head>
+<body>
+	<form method="post" action="{% url 'travel_input' %}">
+		{% csrf_token %}
+		<label for="location">Location:</label>
+		<input type="text" id="location" name="location"><br>
+	
+		<label for="start_date">Start Date:</label>
+		<input type="date" id="start_date" name="start_date"><br>
+	
+		<label for="end_date">End Date:</label>
+		<input type="date" id="end_date" name="end_date"><br>
+	
+		<label for="num_days">Number of Days:</label>
+		<input type="number" id="num_days" name="num_days"><br>
+	
+		<label for="num_people">Number of People:</label>
+		<input type="number" id="num_people" name="num_people"><br>
+	
+		<label for="companions">Companions:</label>
+		<select id="companions" name="companions">
+			<option value="solo">Solo</option>
+			<option value="family">Family</option>
+			<option value="friends">Friends</option>
+			<option value="couple">Couple</option>
+		</select><br>
+	
+		<input type="submit" value="Submit">
+	</form>	
+</body>
+</html>

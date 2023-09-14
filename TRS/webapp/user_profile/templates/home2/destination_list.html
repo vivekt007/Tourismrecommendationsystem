@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Destination List</title>
+</head>
+<body>
+	<h1 style="text-align:center; font-size: 36px; color: #333;">Destination List</h1>
+	<ul style="list-style-type: none; padding: 0; margin: 0;">
+	{% for state, locations in dataset.items %}
+		{% for location in locations %}
+			<li style="margin-bottom: 20px;">
+                <h1>Location: {{ location }}</h1>
+                <p><strong>Type:</strong> {{ type }}</p>
+                <p><strong>Details:</strong> {{ details }}</p>
+                <img src="{{ url }}" alt="{{ location }}">
+			</li>
+		{% endfor %}
+	{% endfor %}
+	</ul>
+</body>
+</html>
